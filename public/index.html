@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Homeserver-Manager</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%96%A5%EF%B8%8F%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="/vendor/xterm/css/xterm.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ===== Auth (Setup / Login) ===== -->
+<div id="authView" class="auth-view hidden">
+  <div class="auth-card">
+    <div class="auth-logo">🖥️</div>
+    <h1>Homeserver-Manager</h1>
+    <p id="authHint" class="auth-hint"></p>
+    <form id="authForm">
+      <input type="password" id="authPassword" placeholder="Passwort" data-i18n-placeholder="auth.password" autocomplete="current-password" required>
+      <input type="password" id="authPassword2" placeholder="Passwort wiederholen" data-i18n-placeholder="auth.password2" autocomplete="new-password" class="hidden">
+      <button type="submit" class="btn btn-primary btn-block" id="authSubmit">Anmelden</button>
+    </form>
+    <p id="authError" class="auth-error"></p>
+  </div>
+</div>
+
+<!-- ===== App ===== -->
+<div id="appView" class="hidden">
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand-icon">🖥️</span>
+      <span class="brand-name">Homeserver-Manager</span>
+    </div>
+    <div class="public-ips" id="publicIps"></div>
+    <div class="topbar-actions">
+      <button class="icon-btn icon-btn-text" id="dnsToolBtn" title="DNS-Abfrage" data-i18n-title="top.dns">DNS</button>
+      <button class="icon-btn" id="themeBtn" title="Design umschalten">◐</button>
+      <button class="icon-btn" id="settingsBtn" title="Einstellungen" data-i18n-title="top.settings">⚙</button>
+      <button class="icon-btn" id="logoutBtn" title="Abmelden" data-i18n-title="top.logout">⏻</button>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- Global links -->
+    <section class="section" id="globalLinksSection">
+      <div class="section-head">
+        <h2 data-i18n="sec.globalLinks">Globale Links</h2>
+        <button class="btn btn-ghost btn-sm" id="addGlobalLinkBtn">+ Link</button>
+      </div>
+      <div class="global-links" id="globalLinks"></div>
+    </section>
+
+    <!-- Availability chart -->
+    <section class="section">
+      <div class="section-head">
+        <h2 data-i18n="sec.availability">Verfügbarkeit — letzte 24 Stunden</h2>
+        <span class="section-sub" id="chartSub"></span>
+      </div>
+      <div class="chart-card viz-root">
+        <div id="availChart" class="avail-chart"></div>
+        <div id="chartLegend" class="chart-legend"></div>
+      </div>
+    </section>
+
+    <!-- Servers -->
+    <section class="section">
+      <div class="section-head">
+        <h2 data-i18n="sec.servers">Meine Server</h2>
+        <button class="btn btn-primary btn-sm" id="addServerBtn">+ Server</button>
+      </div>
+      <div class="server-grid" id="serverGrid"></div>
+    </section>
+  </main>
+
+  <footer class="app-footer">
+    <span data-i18n="footer.credit">Homeserver-Manager by Maximilian Golda</span>
+    <span id="footerVersion"></span>
+  </footer>
+</div>
+
+<!-- ===== Modals (filled by app.js) ===== -->
+<div id="modalRoot"></div>
+
+<!-- ===== Terminal overlay ===== -->
+<div id="termOverlay" class="term-overlay hidden">
+  <div class="term-bar">
+    <span id="termTitle">Terminal</span>
+    <button class="icon-btn" id="termCloseBtn" title="Schließen" data-i18n-title="term.close">✕</button>
+  </div>
+  <div id="termContainer"></div>
+</div>
+
+<div id="toast" class="toast hidden"></div>
+
+<script src="/vendor/xterm/lib/xterm.js"></script>
+<script src="/vendor/addon-fit/lib/addon-fit.js"></script>
+<script src="i18n.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
