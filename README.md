@@ -59,7 +59,7 @@ WantedBy=multi-user.target
 
 ## Lizenz
 
-MIT
+Dieses Projekt steht unter der MIT-Lizenz. Details siehe [LICENSE](./LICENSE).
 
 ## Entwickler
 
