@@ -4,7 +4,8 @@
   "description": "Selbstgehostetes Dashboard zur zentralen Verwaltung von Homeservern: Verfügbarkeits-Monitoring, Services & Links, SSH-Terminal im Browser, Serversteuerung, DNS-Abfragen.",
   "main": "server/index.js",
   "scripts": {
-    "start": "node server/index.js"
+    "start": "node server/index.js",
+    "package": "bash scripts/build-package.sh"
   },
   "keywords": [
     "homeserver",

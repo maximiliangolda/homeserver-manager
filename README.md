@@ -34,6 +34,32 @@ npm start
 
 Dashboard öffnen: `http://<host>:4680` — beim ersten Aufruf wird das Passwort festgelegt.
 
+### Installationspaket (Linux/systemd)
+
+Auf einem Linux-Server mit Node.js ≥ 18 und `systemd` kann das Release-Paket direkt
+installiert werden:
+
+```bash
+tar -xzf homeserver-manager-1.0.0.tar.gz
+cd homeserver-manager-1.0.0
+sudo bash scripts/install.sh
+```
+
+Das Skript legt den Dienstbenutzer `homeserver-manager` an, installiert die
+Produktionsabhängigkeiten unter `/opt/homeserver-manager` und startet den
+systemd-Dienst automatisch. Eigene Daten werden unter
+`/opt/homeserver-manager/data/` gespeichert.
+
+Ein Paket aus dem Quellcode erzeugen:
+
+```bash
+npm ci
+npm run package
+```
+
+Das Archiv liegt anschließend unter `dist/`. Es enthält keine `node_modules/`,
+keine lokalen `data/`-Dateien und keine Zugangsdaten.
+
 ### Als systemd-Dienst
 
 ```ini
